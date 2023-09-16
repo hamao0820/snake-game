@@ -27,6 +27,38 @@ class View {
         }
     }
 
+    private renderSnakeEye() {
+        const lex =
+            this.#model.snake.mx + Math.cos(((this.#model.snake.angle - 60) * Math.PI) / 180) * Snake.halfWidth * 0.4;
+        const ley =
+            this.#model.snake.my + Math.sin(((this.#model.snake.angle - 60) * Math.PI) / 180) * Snake.halfWidth * 0.4;
+        const rex =
+            this.#model.snake.mx + Math.cos(((this.#model.snake.angle + 60) * Math.PI) / 180) * Snake.halfWidth * 0.4;
+        const rey =
+            this.#model.snake.my + Math.sin(((this.#model.snake.angle + 60) * Math.PI) / 180) * Snake.halfWidth * 0.4;
+        this.#model.stage.ctx.fillStyle = '#fff';
+        this.#model.stage.ctx.beginPath();
+        this.#model.stage.ctx.arc(lex, ley, Snake.halfWidth * 0.4, 0, 2 * Math.PI);
+        this.#model.stage.ctx.fill();
+        this.#model.stage.ctx.closePath();
+        this.#model.stage.ctx.fillStyle = '#000';
+        this.#model.stage.ctx.beginPath();
+        this.#model.stage.ctx.arc(lex, ley, Snake.halfWidth * 0.2, 0, 2 * Math.PI);
+        this.#model.stage.ctx.fill();
+        this.#model.stage.ctx.closePath();
+
+        this.#model.stage.ctx.fillStyle = '#fff';
+        this.#model.stage.ctx.beginPath();
+        this.#model.stage.ctx.arc(rex, rey, Snake.halfWidth * 0.4, 0, 2 * Math.PI);
+        this.#model.stage.ctx.fill();
+        this.#model.stage.ctx.closePath();
+        this.#model.stage.ctx.fillStyle = '#000';
+        this.#model.stage.ctx.beginPath();
+        this.#model.stage.ctx.arc(rex, rey, Snake.halfWidth * 0.2, 0, 2 * Math.PI);
+        this.#model.stage.ctx.fill();
+        this.#model.stage.ctx.closePath();
+    }
+
     private renderFood() {
         if (this.#model.food === null) {
             return;
@@ -41,6 +73,7 @@ class View {
     render() {
         this.renderStage();
         this.renderSnake();
+        this.renderSnakeEye();
         this.renderFood();
     }
 }
