@@ -15,7 +15,7 @@ class Model {
     update() {
         this.#snake.turn(this.#turnAngle);
         this.#snake.move();
-        if (Judger.checkCollision(this.#snake)) {
+        if (Judger.checkCollisionWall(this.#snake) || Judger.checkCollisionSelf(this.#snake, this.#stage.ctx)) {
             this.#gameOver = true;
         }
     }

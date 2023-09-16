@@ -30,6 +30,10 @@ class Snake {
         return this.#positionList;
     }
 
+    get angle() {
+        return this.#angle;
+    }
+
     get mx() {
         return this.#mx;
     }
