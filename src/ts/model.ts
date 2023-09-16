@@ -1,5 +1,6 @@
 import Food from './food';
 import Judger from './judger';
+import Score from './score';
 import Snake from './snake';
 import Stage from './stage';
 
@@ -23,6 +24,7 @@ class Model {
         if (this.#food && Judger.checkCollisionFood(this.#snake, this.#food)) {
             this.#food = this.createFood();
             this.#snake.grow();
+            Score.addScore();
             return;
         }
         if (Judger.checkCollisionWall(this.#snake) || Judger.checkCollisionSelf(this.#snake, ctx)) {

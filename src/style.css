@@ -1,3 +1,10 @@
+#score {
+    position: relative;
+    width: 300px;
+    font-size: 20px;
+    padding: 5px 0;
+}
+
 .container {
     position: relative;
     width: 300px;

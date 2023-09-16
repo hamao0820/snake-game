@@ -1,6 +1,7 @@
 import Controller from './controller';
 import Judger from './judger';
 import Model from './model';
+import Score from './score';
 import View from './view';
 
 class Game {
@@ -21,6 +22,7 @@ class Game {
 
     async start() {
         const controller = new Controller(this.#view, this.#model);
+        Score.init();
         while (!this.#model.gameOver) {
             await new Promise((resolve) => setTimeout(resolve, 10));
             this.step();
