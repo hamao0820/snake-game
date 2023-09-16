@@ -16,7 +16,7 @@ class Model {
         this.#food = this.createFood();
     }
 
-    update() {
+    update(ctx: CanvasRenderingContext2D) {
         this.#snake.turn(this.#turnAngle);
         this.#snake.move();
 
@@ -25,7 +25,7 @@ class Model {
             this.#snake.grow();
             return;
         }
-        if (Judger.checkCollisionWall(this.#snake) || Judger.checkCollisionSelf(this.#snake, this.#stage.ctx)) {
+        if (Judger.checkCollisionWall(this.#snake) || Judger.checkCollisionSelf(this.#snake, ctx)) {
             this.#gameOver = true;
         }
     }

@@ -4,25 +4,28 @@ import Stage from './stage';
 
 class View {
     readonly #model: Model;
+    readonly #ctx: CanvasRenderingContext2D;
     constructor(model: Model) {
         this.#model = model;
+        const canvas = document.getElementById('canvas') as HTMLCanvasElement;
+        this.#ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
     }
 
     private renderStage() {
-        this.#model.stage.ctx.fillStyle = '#000';
-        this.#model.stage.ctx.fillRect(0, 0, Stage.Size, Stage.Size);
+        this.#ctx.fillStyle = '#000';
+        this.#ctx.fillRect(0, 0, Stage.Size, Stage.Size);
     }
 
     private renderSnake() {
         let i = 0;
         for (const [x, y] of this.#model.snake.positionList) {
-            this.#model.stage.ctx.fillStyle = this.#model.gameOver
+            this.#ctx.fillStyle = this.#model.gameOver
                 ? '#800'
                 : `hsl(${120 - (this.#model.snake.positionList.length - i) * 2}deg, 100%, 50%)`;
-            this.#model.stage.ctx.beginPath();
-            this.#model.stage.ctx.arc(x, y, Snake.halfWidth, 0, 2 * Math.PI);
-            this.#model.stage.ctx.fill();
-            this.#model.stage.ctx.closePath();
+            this.#ctx.beginPath();
+            this.#ctx.arc(x, y, Snake.halfWidth, 0, 2 * Math.PI);
+            this.#ctx.fill();
+            this.#ctx.closePath();
             i++;
         }
     }
@@ -36,38 +39,38 @@ class View {
             this.#model.snake.mx + Math.cos(((this.#model.snake.angle + 60) * Math.PI) / 180) * Snake.halfWidth * 0.4;
         const rey =
             this.#model.snake.my + Math.sin(((this.#model.snake.angle + 60) * Math.PI) / 180) * Snake.halfWidth * 0.4;
-        this.#model.stage.ctx.fillStyle = '#fff';
-        this.#model.stage.ctx.beginPath();
-        this.#model.stage.ctx.arc(lex, ley, Snake.halfWidth * 0.4, 0, 2 * Math.PI);
-        this.#model.stage.ctx.fill();
-        this.#model.stage.ctx.closePath();
-        this.#model.stage.ctx.fillStyle = '#000';
-        this.#model.stage.ctx.beginPath();
-        this.#model.stage.ctx.arc(lex, ley, Snake.halfWidth * 0.2, 0, 2 * Math.PI);
-        this.#model.stage.ctx.fill();
-        this.#model.stage.ctx.closePath();
+        this.#ctx.fillStyle = '#fff';
+        this.#ctx.beginPath();
+        this.#ctx.arc(lex, ley, Snake.halfWidth * 0.4, 0, 2 * Math.PI);
+        this.#ctx.fill();
+        this.#ctx.closePath();
+        this.#ctx.fillStyle = '#000';
+        this.#ctx.beginPath();
+        this.#ctx.arc(lex, ley, Snake.halfWidth * 0.2, 0, 2 * Math.PI);
+        this.#ctx.fill();
+        this.#ctx.closePath();
 
-        this.#model.stage.ctx.fillStyle = '#fff';
-        this.#model.stage.ctx.beginPath();
-        this.#model.stage.ctx.arc(rex, rey, Snake.halfWidth * 0.4, 0, 2 * Math.PI);
-        this.#model.stage.ctx.fill();
-        this.#model.stage.ctx.closePath();
-        this.#model.stage.ctx.fillStyle = '#000';
-        this.#model.stage.ctx.beginPath();
-        this.#model.stage.ctx.arc(rex, rey, Snake.halfWidth * 0.2, 0, 2 * Math.PI);
-        this.#model.stage.ctx.fill();
-        this.#model.stage.ctx.closePath();
+        this.#ctx.fillStyle = '#fff';
+        this.#ctx.beginPath();
+        this.#ctx.arc(rex, rey, Snake.halfWidth * 0.4, 0, 2 * Math.PI);
+        this.#ctx.fill();
+        this.#ctx.closePath();
+        this.#ctx.fillStyle = '#000';
+        this.#ctx.beginPath();
+        this.#ctx.arc(rex, rey, Snake.halfWidth * 0.2, 0, 2 * Math.PI);
+        this.#ctx.fill();
+        this.#ctx.closePath();
     }
 
     private renderFood() {
         if (this.#model.food === null) {
             return;
         }
-        this.#model.stage.ctx.fillStyle = `hsl(${Math.random() * 360}, 100%, 50%)`;
-        this.#model.stage.ctx.beginPath();
-        this.#model.stage.ctx.arc(this.#model.food.x, this.#model.food.y, Snake.halfWidth, 0, 2 * Math.PI);
-        this.#model.stage.ctx.fill();
-        this.#model.stage.ctx.closePath();
+        this.#ctx.fillStyle = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        this.#ctx.beginPath();
+        this.#ctx.arc(this.#model.food.x, this.#model.food.y, Snake.halfWidth, 0, 2 * Math.PI);
+        this.#ctx.fill();
+        this.#ctx.closePath();
     }
 
     render() {
@@ -75,6 +78,10 @@ class View {
         this.renderSnake();
         this.renderSnakeEye();
         this.renderFood();
+    }
+
+    get ctx() {
+        return this.#ctx;
     }
 }
 

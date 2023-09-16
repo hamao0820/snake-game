@@ -15,7 +15,7 @@ class Game {
     }
 
     private step() {
-        this.#model.update();
+        this.#model.update(this.#view.ctx);
         this.#view.render();
     }
 
