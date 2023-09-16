@@ -1,10 +1,12 @@
 import Controller from './controller';
+import Judger from './judger';
 import Model from './model';
 import View from './view';
 
 class Game {
     readonly #view: View;
     readonly #model: Model;
+
     constructor() {
         this.#model = new Model();
         this.#view = new View(this.#model);
@@ -13,16 +15,17 @@ class Game {
     }
 
     private step() {
-        this.#view.render();
         this.#model.update();
+        this.#view.render();
     }
 
     async start() {
-        new Controller(this.#view, this.#model);
-        while (true) {
+        const controller = new Controller(this.#view, this.#model);
+        while (!this.#model.gameOver) {
             await new Promise((resolve) => setTimeout(resolve, 10));
             this.step();
         }
+        controller.reset();
     }
 }
 

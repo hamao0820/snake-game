@@ -14,7 +14,7 @@ class View {
     }
 
     private renderSnake() {
-        this.#model.stage.ctx.fillStyle = '#0c0';
+        this.#model.stage.ctx.fillStyle = this.#model.gameOver ? '#800' : '#0c0';
         for (const [x, y] of this.#model.snake.positionList) {
             this.#model.stage.ctx.beginPath();
             this.#model.stage.ctx.arc(x, y, Snake.halfWidth, 0, 2 * Math.PI);

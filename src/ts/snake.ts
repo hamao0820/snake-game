@@ -5,9 +5,9 @@ class Snake {
     static readonly halfWidth = 8;
     readonly #positionList: [number, number][] = [];
     #mx = Stage.Size / 2;
-    #my = Stage.Size / 2;
+    #my = (Stage.Size * 4) / 5;
     #speed = 1;
-    #angle = 90;
+    #angle = -90;
 
     constructor() {
         for (let i = 0; i < Snake.initialLength; i++) {
@@ -28,6 +28,14 @@ class Snake {
 
     get positionList() {
         return this.#positionList;
+    }
+
+    get mx() {
+        return this.#mx;
+    }
+
+    get my() {
+        return this.#my;
     }
 }
 
