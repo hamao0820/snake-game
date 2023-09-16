@@ -1,17 +1,14 @@
 import '../style.css';
+import Game from './game';
 import Snake from './snake';
 import Stage from './stage';
 import View from './view';
 const size = 300;
 
 class Main {
-    readonly #stage: Stage;
-    readonly #snake: Snake;
     constructor() {
-        this.#stage = new Stage();
-        this.#snake = new Snake();
-        const view = new View(this.#stage, this.#snake);
-        view.render();
+        const game = new Game();
+        game.start();
     }
 }
 
