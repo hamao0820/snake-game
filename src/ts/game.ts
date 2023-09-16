@@ -1,6 +1,7 @@
 import Controller from './controller';
 import Model from './model';
 import Score from './score';
+import StartButton from './startButton';
 import View from './view';
 
 class Game {
@@ -19,6 +20,10 @@ class Game {
         this.#view.render();
     }
 
+    init() {
+        Score.init();
+    }
+
     async start() {
         const controller = new Controller(this.#view, this.#model);
         Score.init();
@@ -27,6 +32,7 @@ class Game {
             this.step();
         }
         controller.reset();
+        StartButton.available();
     }
 }
 
