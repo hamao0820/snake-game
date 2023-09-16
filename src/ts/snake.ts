@@ -26,6 +26,13 @@ class Snake {
         this.#positionList.shift();
     }
 
+    grow() {
+        const tailPosition = this.#positionList[0];
+        for (let i = 0; i < 30; i++) {
+            this.#positionList.unshift(tailPosition);
+        }
+    }
+
     get positionList() {
         return this.#positionList;
     }

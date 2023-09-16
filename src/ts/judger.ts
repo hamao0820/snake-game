@@ -1,3 +1,4 @@
+import Food from './food';
 import Snake from './snake';
 import Stage from './stage';
 
@@ -17,6 +18,10 @@ class Judger {
         const data = ctx.getImageData(0, 0, Stage.Size, Stage.Size).data;
         const index = (Math.trunc(ty) * Stage.Size + Math.trunc(tx)) * 4;
         return data[index] !== 0 || data[index + 1] !== 0 || data[index + 2] !== 0;
+    }
+
+    static checkCollisionFood(snake: Snake, food: Food) {
+        return (snake.mx - food.x) ** 2 + (snake.my - food.y) ** 2 <= ((Snake.halfWidth + 2) * 2) ** 2;
     }
 }
 
