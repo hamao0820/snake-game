@@ -1,5 +1,4 @@
 import Controller from './controller';
-import Judger from './judger';
 import Model from './model';
 import Score from './score';
 import View from './view';

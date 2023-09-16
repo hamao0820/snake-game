@@ -1,3 +1,9 @@
+body {
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
 #score {
     position: relative;
     width: 300px;
