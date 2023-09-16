@@ -1,17 +1,30 @@
 import Snake from './snake';
-import View from './view';
+import Stage from './stage';
 
 class Model {
-    readonly #view: View;
     readonly #snake: Snake;
-    constructor(view: View,snake: Snake) {
-        this.#view = view;
-        this.#snake = snake;
+    readonly #stage: Stage;
+    #turnAngle = 0;
+    constructor() {
+        this.#snake = new Snake();
+        this.#stage = new Stage();
     }
 
-    update(){
+    update() {
+        this.#snake.turn(this.#turnAngle);
         this.#snake.move();
-        this.#view.render();
+    }
+
+    set turnAngle(turnAngle: number) {
+        this.#turnAngle = turnAngle;
+    }
+
+    get snake() {
+        return this.#snake;
+    }
+
+    get stage() {
+        return this.#stage;
     }
 }
 

@@ -1,5 +1,29 @@
 .container {
     position: relative;
-    width: 500px;
-    height: 500px;
+    width: 300px;
+    height: 300px;
+}
+
+.controller-container {
+    position: relative;
+    width: 300px;
+    height: 90px;
+}
+
+#left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150px;
+    height: 90px;
+    background-color: #cc0;
+}
+
+#right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 150px;
+    height: 90px;
+    background-color: #0cc;
 }

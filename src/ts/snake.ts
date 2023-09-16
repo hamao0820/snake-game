@@ -15,9 +15,13 @@ class Snake {
         }
     }
 
-    move(){
-        this.#mx += this.#speed * Math.cos(this.#angle * Math.PI / 180);
-        this.#my += this.#speed * Math.sin(this.#angle * Math.PI / 180);
+    turn(turnAngle: number) {
+        this.#angle += turnAngle;
+    }
+
+    move() {
+        this.#mx += this.#speed * Math.cos((this.#angle * Math.PI) / 180);
+        this.#my += this.#speed * Math.sin((this.#angle * Math.PI) / 180);
         this.#positionList.push([this.#mx, this.#my]);
         this.#positionList.shift();
     }

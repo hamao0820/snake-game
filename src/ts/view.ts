@@ -1,26 +1,25 @@
+import Model from './model';
 import Snake from './snake';
 import Stage from './stage';
 
 class View {
-    readonly #stage: Stage;
-    readonly #snake: Snake;
-    constructor(stage: Stage, snake: Snake) {
-        this.#stage = stage;
-        this.#snake = snake;
+    readonly #model: Model;
+    constructor(model: Model) {
+        this.#model = model;
     }
 
     private renderStage() {
-        this.#stage.ctx.fillStyle = '#000';
-        this.#stage.ctx.fillRect(0, 0, Stage.Size, Stage.Size);
+        this.#model.stage.ctx.fillStyle = '#000';
+        this.#model.stage.ctx.fillRect(0, 0, Stage.Size, Stage.Size);
     }
 
     private renderSnake() {
-        this.#stage.ctx.fillStyle = '#0c0';
-        for (const [x, y] of this.#snake.positionList) {
-            this.#stage.ctx.beginPath();
-            this.#stage.ctx.arc(x, y, Snake.halfWidth, 0, 2 * Math.PI);
-            this.#stage.ctx.fill();
-            this.#stage.ctx.closePath();
+        this.#model.stage.ctx.fillStyle = '#0c0';
+        for (const [x, y] of this.#model.snake.positionList) {
+            this.#model.stage.ctx.beginPath();
+            this.#model.stage.ctx.arc(x, y, Snake.halfWidth, 0, 2 * Math.PI);
+            this.#model.stage.ctx.fill();
+            this.#model.stage.ctx.closePath();
         }
     }
 

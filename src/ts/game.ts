@@ -1,26 +1,27 @@
+import Controller from './controller';
 import Model from './model';
-import Snake from './snake';
-import Stage from './stage';
 import View from './view';
 
 class Game {
-    readonly #stage: Stage;
-    readonly #snake: Snake;
     readonly #view: View;
     readonly #model: Model;
     constructor() {
-        this.#stage = new Stage();
-        this.#snake = new Snake();
-        this.#view = new View(this.#stage, this.#snake);
-        this.#model = new Model(this.#view, this.#snake);
+        this.#model = new Model();
+        this.#view = new View(this.#model);
 
         this.#view.render();
     }
 
+    private step() {
+        this.#view.render();
+        this.#model.update();
+    }
+
     async start() {
+        new Controller(this.#view, this.#model);
         while (true) {
             await new Promise((resolve) => setTimeout(resolve, 10));
-            this.#model.update();
+            this.step();
         }
     }
 }
