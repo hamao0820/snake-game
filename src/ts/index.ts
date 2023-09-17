@@ -8,6 +8,14 @@ class Main {
         game.init();
 
         StartButton.init(game);
+
+        document.addEventListener(
+            'dblclick',
+            function (e) {
+                e.preventDefault();
+            },
+            { passive: false }
+        );
     }
 }
 
