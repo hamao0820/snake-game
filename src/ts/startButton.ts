@@ -12,7 +12,7 @@ class StartButton {
         this.unavailable();
         this.#element.onclick = null;
 
-        game.start();
+        game.ready();
     }
 
     static restart() {

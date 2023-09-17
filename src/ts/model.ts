@@ -1,3 +1,4 @@
+import Countdown from './countdown';
 import Food from './food';
 import Judger from './judger';
 import Score from './score';
@@ -10,11 +11,13 @@ class Model {
     #food: Food | null = null;
     #gameOver = false;
     #turnAngle = 0;
+    #countdown: Countdown;
     constructor() {
         this.#snake = new Snake();
         this.#stage = new Stage();
 
         this.#food = this.createFood();
+        this.#countdown = new Countdown();
     }
 
     update(ctx: CanvasRenderingContext2D) {
@@ -56,6 +59,10 @@ class Model {
 
     get gameOver() {
         return this.#gameOver;
+    }
+
+    get countdown() {
+        return this.#countdown;
     }
 }
 

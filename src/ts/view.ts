@@ -73,6 +73,18 @@ class View {
         this.#ctx.closePath();
     }
 
+    renderCountdown() {
+        this.#ctx.fillStyle = '#fff';
+        this.#ctx.font = '15px';
+        this.#ctx.textAlign = 'center';
+        this.#ctx.textBaseline = 'middle';
+        this.#ctx.fillText(
+            this.#model.countdown.countDown.toString(),
+            this.#model.snake.mx,
+            this.#model.snake.my - Snake.halfWidth * 3
+        );
+    }
+
     render() {
         this.renderStage();
         this.renderSnake();
