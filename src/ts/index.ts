@@ -19,4 +19,4 @@ class Main {
     }
 }
 
-new Main();
+document.addEventListener('DOMContentLoaded', () => new Main());
