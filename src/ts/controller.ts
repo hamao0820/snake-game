@@ -17,19 +17,31 @@ class Controller {
         this.#rightButton.addEventListener('pointerdown', this.turnRight.bind(this));
         this.#leftButton.addEventListener('pointerup', this.stopTurn.bind(this));
         this.#rightButton.addEventListener('pointerup', this.stopTurn.bind(this));
+        document.addEventListener('keydown', (e: KeyboardEvent) => {
+            if (e.key === 'ArrowLeft') {
+                this.turnLeft(e);
+            } else if (e.key === 'ArrowRight') {
+                this.turnRight(e);
+            }
+        });
+        document.addEventListener('keyup', (e: KeyboardEvent) => {
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                this.stopTurn(e);
+            }
+        });
     }
 
-    private turnLeft(e: MouseEvent) {
+    private turnLeft(e: MouseEvent | KeyboardEvent) {
         e.preventDefault();
         this.#model.turnAngle = -5;
     }
 
-    private turnRight(e: MouseEvent) {
+    private turnRight(e: MouseEvent | KeyboardEvent) {
         e.preventDefault();
         this.#model.turnAngle = 5;
     }
 
-    private stopTurn(e: MouseEvent) {
+    private stopTurn(e: MouseEvent | KeyboardEvent) {
         e.preventDefault();
         this.#model.turnAngle = 0;
     }
