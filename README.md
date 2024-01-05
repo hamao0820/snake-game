@@ -13,4 +13,4 @@
 
 ## デモ
 
-[ここ](https://shunsukehamada.github.io/snake-game/dist)で遊べます
+[ここ](https://hamao0820.github.io/snake-game/dist)で遊べます
